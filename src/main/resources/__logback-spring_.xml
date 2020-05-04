@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="FLUENT" class="ch.qos.logback.more.appenders.DataFluentAppender">
+        <tag>controller</tag>
+        <label>logback</label>
+        <remoteHost>localhost</remoteHost>
+        <port>24224</port>
+        <maxQueueSize>20</maxQueueSize>
+    </appender>
+  
+  
+ 	<include resource="logback-appenders-std.xml" />
+
+     
+    <!-- LOG everything at INFO level -->
+    <root level="debug">
+        <appender-ref ref="RollingFile" />
+         <appender-ref ref="FLUENT" />
+        <appender-ref ref="Console" />
+    </root>
+ 
+    <logger name="it" level="debug" additivity="false">
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="FLUENT" />
+        <appender-ref ref="Console" />
+    </logger>
+ 
+</configuration>

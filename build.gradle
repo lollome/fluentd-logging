@@ -1,0 +1,76 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'it.polimi'
+version = '1.0.0'
+
+sourceCompatibility = '1.8'
+
+bootRun {
+    System.setProperty("spring.profiles.active", "docker")
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'http://sndyuk.github.com/maven' }
+}
+
+dependencies 
+{
+	/*implementation ('org.springframework.boot:spring-boot-starter-web' )
+	{
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		//exclude group: 'ch.qos.logback', module: 'logback-classic'
+		exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+	}
+	
+	
+	
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+   
+    // libs per fluentd
+	compile group: 'com.sndyuk', name: 'logback-more-appenders', version: '1.2.0'
+	compile group: 'org.fluentd', name: 'fluent-logger', version: '0.3.4'
+     
+    runtimeOnly ('org.slf4j:slf4j-log4j12:1.7.30')
+    {
+		exclude group: 'log4j', module: 'log4j'
+	}
+  
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	
+	
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'*/
+	
+	compile("org.springframework.boot:spring-boot-starter-web"){
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		exclude group: 'ch.qos.logback', module: 'logback-classic'
+		exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+	}
+
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+	
+	compile group: 'org.fluentd', name: 'fluent-logger', version: '0.2.11'
+	
+	runtimeOnly 'io.github.elbryan:fluentd4log4j:1.0'
+	
+	runtimeOnly 'org.slf4j:slf4j-log4j12:1.7+'
+	
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+
+
+}
+
+test {
+	useJUnitPlatform()
+}
